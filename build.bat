@@ -1,0 +1,21 @@
+del bin\task.exe
+csc ^
+	/out:bin\task.exe ^
+	src\TaskTool.cs ^
+	src\Application\Constants\Commands.cs ^
+	src\Application\Usecase\CloseStrategy.cs ^
+	src\Application\Usecase\IStrategy.cs ^
+	src\Application\Usecase\ListStrategy.cs ^
+	src\Application\Usecase\NewStrategy.cs ^
+	src\Application\Usecase\OpenStrategy.cs ^
+	src\Application\Usecase\PwdStrategy.cs ^
+	src\Application\Usecase\RemoveStrategy.cs ^
+	src\Application\Usecase\RenameStrategy.cs ^
+	src\Application\Usecase\ShowStrategy.cs ^
+	src\Application\Usecase\UsecaseContext.cs ^
+	src\Domain\Model\Task.cs ^
+	src\Domain\Repository\ITaskRepository.cs ^
+	src\Domain\Value\Name.cs ^
+	src\Domain\Value\Status.cs ^
+	src\Infrastructure\FileSystem\IniFIleManager.cs ^
+	src\Infrastructure\FileSystem\TaskRepository.cs ^
