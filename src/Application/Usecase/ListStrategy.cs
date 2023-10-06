@@ -41,7 +41,7 @@ class ListStrategy : IStrategy
 
 	private static class Options
 	{
-		public const string ALL = "/a";
+		public const string ALL = "-a";
 	}
 }
 }
