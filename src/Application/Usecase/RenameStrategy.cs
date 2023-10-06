@@ -30,6 +30,7 @@ class RenameStrategy : IStrategy
 		Task task = repo.Read(this.taskDir);
 		task.Rename(this.name);
 		repo.Update(task);
+		Console.WriteLine(task.TaskDir.FullName);
 	}
 }
 }

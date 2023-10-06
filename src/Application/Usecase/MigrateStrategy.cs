@@ -19,6 +19,7 @@ class MigrateStrategy : MultiTaskStrategy
 			Task task = repo.Read(taskDir);
 			task.Migrate();
 			repo.Update(task);
+			Console.WriteLine(task.TaskDir.FullName);
 		}
 	}
 }
