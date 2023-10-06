@@ -6,6 +6,8 @@ csc ^
 	src\Application\Usecase\CloseStrategy.cs ^
 	src\Application\Usecase\IStrategy.cs ^
 	src\Application\Usecase\ListStrategy.cs ^
+	src\Application\Usecase\MigrateStrategy.cs ^
+	src\Application\Usecase\MultiTaskStrategy.cs ^
 	src\Application\Usecase\NewStrategy.cs ^
 	src\Application\Usecase\OpenStrategy.cs ^
 	src\Application\Usecase\PwdStrategy.cs ^

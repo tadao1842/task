@@ -6,6 +6,7 @@ enum EStatus
 {
 	Open,
 	Close,
+	Migrate,
 	Delete
 }
 
@@ -23,11 +24,6 @@ class Status
 		get {return this.value.ToString();}
 	}
 
-	public bool IsOpen()
-	{
-		return this.value == EStatus.Open;
-	}
-
 	public bool IsClose()
 	{
 		return this.value == EStatus.Close;
@@ -38,18 +34,21 @@ class Status
 		return this.value == EStatus.Delete;
 	}
 
-	public ConsoleColor Color()
+	public string Bullet()
 	{
 		switch(this.value)
 		{
 			case EStatus.Open:
-				return ConsoleColor.Red;
+				return "・";
 
 			case EStatus.Close:
-				return ConsoleColor.Green;
+				return "Ｘ";
 
-			default:
-				return ConsoleColor.Gray;
+			case EStatus.Migrate:
+				return "＞";
+
+			default: // Delete
+				return "－";
 		}
 	}
 }

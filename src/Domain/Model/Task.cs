@@ -42,6 +42,11 @@ class Task
 		this.status = new Status("close");
 	}
 
+	public void Migrate()
+	{
+		this.status = new Status("migrate");
+	}
+
 	public void Delete()
 	{
 		this.status = new Status("delete");
@@ -54,9 +59,8 @@ class Task
 
 	public void Show()
 	{
-		Console.ForegroundColor = this.status.Color();
-		Console.Write("● ");
-		Console.ForegroundColor = ConsoleColor.Gray;
+		Console.Write(this.status.Bullet());
+		Console.Write(" ");
 		Console.Write(Path.GetFileName(this.taskDir.FullName) + " - ");
 		Console.WriteLine(name.Value);
 	}
