@@ -24,7 +24,7 @@ class NewStrategy : IStrategy
 
 	public void Execute()
 	{
-		Task task = new Task(this.taskDir, this.name, new Status("open"));
+		Task task = new Task(this.taskDir, this.name, new Status("migrate"));
 		repo.Create(task);
 		Console.WriteLine(task.TaskDir.FullName);
 	}
