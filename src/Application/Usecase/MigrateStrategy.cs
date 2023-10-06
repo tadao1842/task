@@ -8,26 +8,18 @@ using Infrastructure.FileSystem;
 
 namespace Application.Usecase
 {
-class MigrateStrategy : IStrategy
+class MigrateStrategy : MultiTaskStrategy
 {
-	private DirectoryInfo taskDir;
-	private ITaskRepository repo;
+	public MigrateStrategy(string[] args) : base(args){}
 
-	public MigrateStrategy(string[] args)
+	public override void Execute()
 	{
-		string strVault = ConfigurationManager.AppSettings["Vault"];
-		string strTaskDir = (args.Length == 1)
-			? Environment.CurrentDirectory
-			: Path.Combine(new string[] {strVault, args[1]});
-		this.taskDir = new DirectoryInfo(strTaskDir);
-		this.repo = new TaskRepository();
-	}
-
-	public void Execute()
-	{
-		Task task = repo.Read(this.taskDir);
-		task.Migrate();
-		repo.Update(task);
+		foreach (DirectoryInfo taskDir in this.taskDirs)
+		{
+			Task task = repo.Read(taskDir);
+			task.Migrate();
+			repo.Update(task);
+		}
 	}
 }
 }
