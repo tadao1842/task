@@ -26,6 +26,7 @@ class NewStrategy : IStrategy
 	{
 		Task task = new Task(this.taskDir, this.name, new Status("open"));
 		repo.Create(task);
+		Console.WriteLine(task.TaskDir.FullName);
 	}
 }
 }
