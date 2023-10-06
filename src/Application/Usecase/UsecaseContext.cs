@@ -33,6 +33,10 @@ class UsecaseContext
 				this.strategy = new CloseStrategy(args);
 				break;
 
+			case Commands.MIGRATE:
+				this.strategy = new MigrateStrategy(args);
+				break;
+
 			case Commands.RENAME:
 				this.strategy = new RenameStrategy(args);
 				break;
