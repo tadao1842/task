@@ -19,6 +19,7 @@ class RemoveStrategy : MultiTaskStrategy
 			Task task = repo.Read(taskDir);
 			task.Delete();
 			repo.Update(task);
+			Console.WriteLine(task.TaskDir.FullName);
 		}
 	}
 }

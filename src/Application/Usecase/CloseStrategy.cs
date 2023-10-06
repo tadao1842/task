@@ -19,6 +19,7 @@ class CloseStrategy : MultiTaskStrategy
 			Task task = repo.Read(taskDir);
 			task.Close();
 			repo.Update(task);
+			Console.WriteLine(task.TaskDir.FullName);
 		}
 	}
 }
