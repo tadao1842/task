@@ -1,7 +1,9 @@
 using System;
 using System.IO;
-using System.Configuration;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Text;
+using System.Xml.Linq;
 using Domain.Model;
 using Domain.Repository;
 using Domain.Value;
@@ -10,20 +12,20 @@ namespace Infrastructure.FileSystem
 {
 class TaskRepository : ITaskRepository
 {
-	private const string INI_FILE_NAME = ".task";
-	private const string TASK_SECTION = "TASK";
-	private const string NAME_KEY = "NAME";
-	private const string STATUS_KEY = "STATUS";
+	private const string TASK_FILE_NAME = "Task.xml";
 
 	public void Create(Task task)
 	{
 		Directory.CreateDirectory(task.TaskDir.FullName);
 
-		FileInfo iniFilePath = new FileInfo(
-			Path.Combine(new string[] {task.TaskDir.FullName, INI_FILE_NAME})
+		FileInfo taskFilePath = this.CreateTaskFilePath(task.TaskDir);
+		XElement xmlTask = new XElement(
+			"Task",
+			new XElement("TaskDir", task.TaskDir.FullName),
+			new XElement("Name", task.Name.Value),
+			new XElement("Status", task.Status.Value)
 		);
-		IniFileManager.SetValue(TASK_SECTION, NAME_KEY, task.Name.Value, iniFilePath.FullName);
-		IniFileManager.SetValue(TASK_SECTION, STATUS_KEY, task.Status.Value, iniFilePath.FullName);
+		xmlTask.Save(taskFilePath.FullName);
 
 		DirectoryInfo resourceDir = new DirectoryInfo(
 			ConfigurationManager.AppSettings["Resource"]
@@ -33,9 +35,12 @@ class TaskRepository : ITaskRepository
 
 	public Task Read(DirectoryInfo taskDir)
 	{
-		FileInfo iniFilePath = CreateIniFilePath(taskDir);
-		Name name = new Name(IniFileManager.GetValueString(TASK_SECTION, NAME_KEY, iniFilePath.FullName));
-		Status status = new Status(IniFileManager.GetValueString(TASK_SECTION, STATUS_KEY, iniFilePath.FullName));
+		FileInfo taskFilePath = this.CreateTaskFilePath(taskDir);
+
+		XElement xmlTask = XElement.Load(taskFilePath.FullName);
+		Name name = new Name(xmlTask.Element("Name").Value);
+		Status status = new Status(xmlTask.Element("Status").Value);
+
 		return new Task(taskDir, name, status);
 	}
 
@@ -53,9 +58,16 @@ class TaskRepository : ITaskRepository
 
 	public void Update(Task task)
 	{
-		FileInfo iniFilePath = CreateIniFilePath(task.TaskDir);
-		IniFileManager.SetValue(TASK_SECTION, NAME_KEY, task.Name.Value, iniFilePath.FullName);
-		IniFileManager.SetValue(TASK_SECTION, STATUS_KEY, task.Status.Value, iniFilePath.FullName);
+		FileInfo taskFilePath = this.CreateTaskFilePath(task.TaskDir);
+
+		XElement xmlTask = new XElement(
+			"Task",
+			new XElement("TaskDir", task.TaskDir.FullName),
+			new XElement("Name", task.Name.Value),
+			new XElement("Status", task.Status.Value)
+		);
+
+		xmlTask.Save(taskFilePath.FullName);
 	}
 
 	public void Delete(DirectoryInfo taskDir)
@@ -63,9 +75,11 @@ class TaskRepository : ITaskRepository
 		Directory.Delete(taskDir.FullName, true);
 	}
 
-	private FileInfo CreateIniFilePath(DirectoryInfo taskDir)
+	private FileInfo CreateTaskFilePath(DirectoryInfo taskDir)
 	{
-		return new FileInfo(Path.Combine(new string[] {taskDir.FullName, INI_FILE_NAME}));
+		return new FileInfo(
+			Path.Combine(new string[] {taskDir.FullName, TASK_FILE_NAME})
+		);
 	}
 }
 }

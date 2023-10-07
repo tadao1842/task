@@ -3,7 +3,7 @@ using System.IO;
 
 namespace Infrastructure.FileSystem
 {
-class FileHelper
+static class FileHelper
 {
 	public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
 	{
@@ -19,7 +19,7 @@ class FileHelper
 
 		foreach (FileInfo fi in source.GetFiles())
 		{
-			fi.CopyTo(Path.Combine(target.ToString(), fi.Name), true);
+			fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
 		}
 
 		foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
