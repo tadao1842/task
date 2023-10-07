@@ -19,5 +19,6 @@ csc ^
 	src\Domain\Repository\ITaskRepository.cs ^
 	src\Domain\Value\Name.cs ^
 	src\Domain\Value\Status.cs ^
+	src\Infrastructure\FileSystem\FileHelper.cs ^
 	src\Infrastructure\FileSystem\IniFIleManager.cs ^
 	src\Infrastructure\FileSystem\TaskRepository.cs ^

@@ -18,7 +18,7 @@ class IniFileManager {
 	);
 
 	[DllImport("KERNEL32.DLL")]
-	public static extern uint GetPrivateProfileString(
+	private static extern uint GetPrivateProfileString(
 		string lpAppName,
 		string lpKeyName,
 		string lpDefault,
