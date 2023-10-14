@@ -1,6 +1,6 @@
 namespace Application.Constants
 {
-static class Commands
+static class Command
 {
 		public const string NEW = "new";
 		public const string RENAME = "rename";

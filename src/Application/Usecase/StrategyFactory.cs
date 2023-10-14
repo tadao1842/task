@@ -17,39 +17,39 @@ static class StrategyFactory
 
 		switch(args[0])
 		{
-			case Commands.NEW:
+			case Command.NEW:
 				strategy = new NewStrategy(args);
 				break;
 
-			case Commands.SHOW:
+			case Command.SHOW:
 				strategy = new ShowStrategy(args);
 				break;
 
-			case Commands.OPEN:
+			case Command.OPEN:
 				strategy = new OpenStrategy(args);
 				break;
 
-			case Commands.CLOSE:
+			case Command.CLOSE:
 				strategy = new CloseStrategy(args);
 				break;
 
-			case Commands.MIGRATE:
+			case Command.MIGRATE:
 				strategy = new MigrateStrategy(args);
 				break;
 
-			case Commands.RENAME:
+			case Command.RENAME:
 				strategy = new RenameStrategy(args);
 				break;
 
-			case Commands.LIST:
+			case Command.LIST:
 				strategy = new ListStrategy(args);
 				break;
 
-			case Commands.PWD:
+			case Command.PWD:
 				strategy = new PwdStrategy(args);
 				break;
 
-			case Commands.REMOVE:
+			case Command.REMOVE:
 				strategy = new RemoveStrategy(args);
 				break;
 

@@ -2,7 +2,7 @@ del bin\task.exe
 csc ^
 	/out:bin\task.exe ^
 	src\Program.cs ^
-	src\Application\Constants\Commands.cs ^
+	src\Application\Constants\Command.cs ^
 	src\Application\Usecase\CloseStrategy.cs ^
 	src\Application\Usecase\IStrategy.cs ^
 	src\Application\Usecase\ListStrategy.cs ^
