@@ -1,5 +1,5 @@
 using System;
-using Application.Constants;
+using Application.Constant;
 using Application.Usecase;
 
 namespace Application.Usecase
