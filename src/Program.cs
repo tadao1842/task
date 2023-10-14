@@ -1,7 +1,7 @@
 using System;
 using Application.Usecase;
 
-class TaskTool
+static class Program
 {
 	public static void Main(string[] args)
 	{
