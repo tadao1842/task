@@ -7,8 +7,8 @@ class TaskTool
 	{
 		try
 		{
-			UsecaseContext context = new UsecaseContext(args);
-			context.Execute();
+			IStrategy strategy = StrategyFactory.Create(args);
+			strategy.Execute();
 		}
 		catch (ArgumentException ex)
 		{

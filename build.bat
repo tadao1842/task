@@ -15,7 +15,6 @@ csc ^
 	src\Application\Usecase\RenameStrategy.cs ^
 	src\Application\Usecase\ShowStrategy.cs ^
 	src\Application\Usecase\StrategyFactory.cs ^
-	src\Application\Usecase\UsecaseContext.cs ^
 	src\Domain\Model\Task.cs ^
 	src\Domain\Repository\ITaskRepository.cs ^
 	src\Domain\Value\Name.cs ^
